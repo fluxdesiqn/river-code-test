@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Booking;
+use App\Http\Resources\Booking as BookingResource;
 
 class BookingController extends Controller
 {
@@ -13,7 +16,11 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        // Get Booking
+        $bookings = Booking::paginate(15);
+
+        // Return collection of bookings as resource
+        return BookingResource::collection($bookings);
     }
 
     /**
@@ -24,7 +31,17 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $booking = $request->isMethod('put') ? Booking::findOrFail($request->input('booking_id')) : new Booking;
+        
+        $booking->id = $request->input('booking_id');
+        $booking->name = $request->input('name');
+        $booking->date = $request->input('date');
+        $booking->time = $request->input('time');
+        $booking->message = $request->input('message');
+
+        if($booking->save()) {
+            return new BookingResource($booking);
+        }
     }
 
     /**
@@ -35,7 +52,11 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get booking
+        $booking = Booking::findOrFail($id);
+
+        // Return booking as a resource
+        return new BookingResource($booking);
     }
 
     /**
@@ -46,6 +67,11 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Get booking
+        $booking = Booking::findOrFail($id);
+
+        if($booking->delete()) {
+            return new BookingResource($booking);
+        }
     }
 }
