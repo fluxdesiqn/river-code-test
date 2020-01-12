@@ -22,9 +22,8 @@ window.Vue = require('vue');
 import Bookings from './components/Bookings.vue';
 import Navbar from './components/Navbar.vue';
 
-Vue.component('bookings', Bookings);
 Vue.component('navbar', Navbar);
-
+Vue.component('bookings', Bookings);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

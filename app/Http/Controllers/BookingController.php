@@ -17,7 +17,7 @@ class BookingController extends Controller
     public function index()
     {
         // Get Booking
-        $bookings = Booking::paginate(15);
+        $bookings = Booking::orderBy('created_at', 'desc')->paginate(5);
 
         // Return collection of bookings as resource
         return BookingResource::collection($bookings);
