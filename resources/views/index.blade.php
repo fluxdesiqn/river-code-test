@@ -8,11 +8,17 @@
         <title>River Code Test</title>
         <link rel="stylesheet" href="/css/app.css">
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="app">
-            <navbar></navbar>
+            <div class="push-bottom">
+                <navbar></navbar>
+                <div class="slider">
+                    <h2 class="slider-text">EXAMPLE DEMO</h2>
+                    <img class="slider-img img-fluid" src="/media/large-bg-image.jpg">
+                </div>
+            </div>
             <div class="container">
                 <bookings></bookings>
             </div>
